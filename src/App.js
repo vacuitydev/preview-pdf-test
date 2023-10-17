@@ -14,10 +14,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 function App() {
   const [path, setPath] = useState(path1);
-  const statePath = useSelector(state=>state.pdf.pdfUrl)
-  const pdfData = useSelector(state=>state.pdf.pdfData)
+  const statePath = useSelector((state) => state.pdf.pdfUrl);
+  const pdfData = useSelector((state) => state.pdf.pdfData);
   const [once, setOnce] = useState(false);
-  const counter = useSelector(state=>state.pdf.counter)
+  const counter = useSelector((state) => state.pdf.counter);
 
   const [page, setPage] = useState(1);
   const canvasRef = useRef(null);
@@ -28,11 +28,11 @@ function App() {
     canvasRef,
   });
   const refreshingRef = useRef();
-  const {refreshingPDFDocument, refreshingPDFPages} = usePdf({
-    file:`${path1}?counter=${counter}`,
-     page,
-    canvasRef: refreshingRef}
-  )
+  const { refreshingPDFDocument, refreshingPDFPages } = usePdf({
+    file: `${path1}?counter=${counter}`,
+    page,
+    canvasRef: refreshingRef,
+  });
 
   const alternate = () => {
     if (once) {
@@ -69,7 +69,7 @@ function App() {
   const [numPages, setNumPages] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   function onDocumentLoadSuccess({ numPages }) {
-    console.log("Pages", numPages)
+    console.log("Pages", numPages);
     setNumPages(numPages);
   }
   return (
@@ -80,7 +80,7 @@ function App() {
         backgroundColor: "#888",
         display: "flex",
         color: "#eee",
-        fontSize:"3rem"
+        fontSize: "3rem",
       }}
     >
       <div
@@ -109,7 +109,7 @@ function App() {
       >
         <div> With react pdf</div>
 
-        <PDFViewer pdf={statePath}/>
+        <PDFViewer pdf={statePath} />
       </div>
       <div
         style={{
@@ -122,7 +122,7 @@ function App() {
         <div>With McPDF</div>
         {!pdfDocument && <span>Loading...</span>}
         <canvas ref={canvasRef} />
-        {Boolean( refreshingPDFDocument  && refreshingPDFDocument.numPages) && (
+        {Boolean(refreshingPDFDocument && refreshingPDFDocument.numPages) && (
           <nav>
             <ul className="pager">
               <li className="previous">

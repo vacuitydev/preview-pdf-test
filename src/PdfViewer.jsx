@@ -17,6 +17,7 @@ const PdfViewer = ({ pdf }) => {
     }
   };
 
+
   const prevPage = () => {
     if (pageNumber > 1) {
       setPageNumber(pageNumber - 1);
